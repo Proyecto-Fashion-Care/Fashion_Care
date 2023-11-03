@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 python == 3.9.8
 django == 4.2.7
+=======
+
+python == 3.9.7
+django == 4.2.7
+
+>>>>>>> 66ea19818ac948804e7ca76c9bad6724c882bab4
