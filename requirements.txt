@@ -3,4 +3,5 @@ pillow
 pylint
 pylint-django
 pylint-celery
+django-ckeditor
 
