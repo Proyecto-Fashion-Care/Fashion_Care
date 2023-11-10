@@ -1,0 +1,21 @@
+html{
+    background-color: black;
+}
+body{
+    color: white;
+}
+#agrupador{
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+    border-bottom: 2px solid white;
+    margin-block-start: 20px;
+    margin-block-end: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+.hgroup{
+    font-size: 25px;
+}

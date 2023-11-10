@@ -1,0 +1,44 @@
+html{
+    background-color: black;
+}
+body{
+    color: white;
+}
+#agrupador{
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+    border: 2px solid white;
+    margin-block-start: 20px;
+    margin-block-end: 20px;
+    padding: 10px;
+}
+#cabecera{
+    display: flex;
+    margin-block-start: 20px;
+    margin-left: 10px;
+    justify-content: left;
+    align-items: center;
+    text-align: left;
+}
+.hgroup{
+    font-size: 25px;
+}
+.contenedor{
+    display: flex;
+    width: 1200px;
+    justify-content: right; /*Alineamos la imagen a la derecha del contenedor*/
+    align-items: center; /*Centramos verticalmente la imagen*/
+    margin-right: 5px;
+    background-color: #000000; /* Cambiamos el color de fondo */
+}
+img {
+    width: 80px; /*Ancho*/
+    height: 80px; /*Alto*/
+    border: 2px solid cornflowerblue;
+    transition: box-shadow 0.3s; /*Agregamos una transición para el efecto de iluminación sobre el boton*/
+}
+img:hover {
+    box-shadow: 0 0 10px 5px deepskyblue; /*Efecto de iluminación*/
+    cursor: pointer; /*Cambia el cursor para indicar que es interactivo*/
+}
