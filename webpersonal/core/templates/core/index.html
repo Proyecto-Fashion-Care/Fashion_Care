@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Interfaz</title>
-    <link rel="stylesheet" href="{%static 'css/index.css%}" type="text/css">
+    <link rel="stylesheet" href="{%static 'css/index.css'%}" type="text/css">
 </head>
 <body>
 <div id="agrupador">
@@ -14,9 +14,8 @@
             <h1 class="hgroup">Hola, buenos dias @Usuario </h1>
         </div>
     </header>
-    <a class="contenedor" href="http://localhost:63343/Espejo_Web/inicio.html?_ijt=qonujmfmrmk1tb0c037qmnodh0">
-        <img src="https://static.vecteezy.com/system/resources/previews/006/930/430/non_2x/abstract-blue-spiral-line-with-circle-ring-on-black-backdrop-abstract-background-free-photo.jpg"
-             alt="Icono">
+    <a class="contenedor" href="inicio/">
+        <img src="{% static '/img/botonIndex.png' %}"  alt="Icono">
     </a>
 </div>
 </body>
