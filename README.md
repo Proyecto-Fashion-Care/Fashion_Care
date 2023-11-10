@@ -10,7 +10,7 @@ Sprint2: Arduino
 
 Crear página web inicial de la instalación
 
-
+-- crear una rama llamada proyecto con azure
 
 # Informe de Proyecto: Espejo Inteligente 
 
