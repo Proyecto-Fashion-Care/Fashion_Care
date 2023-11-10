@@ -1,9 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Api</title>
-    <link rel="stylesheet" href="api.css" type="text/css">
+    <link rel="stylesheet" href="{%static 'css/api.css'%}" type="text/css">
 </head>
 <body>
 <div id="container">
@@ -26,14 +28,14 @@
     </div>
     <div id="image-container">
         <div class="image-group">
-            <img class="imagenUno" src="" alt="Imagen">
-            <img class="imagenUno" src="" alt="Imagen">
-            <img class="imagenUno" src="" alt="Imagen">
+            <img class="imagenUno" src="{% static '/img/spotifyIMG.png' %}" alt="Imagen">
+            <img class="imagenUno" src="{% static '/img/mailIMG.png' %}" alt="Imagen">
+            <img class="imagenUno" src="{% static '/img/netflixIMG.png' %}" alt="Imagen">
         </div>
         <div class="image-group">
-            <img class="imagenDos" src="" alt="Imagen">
-            <img class="imagenDos" src="" alt="Imagen">
-            <img class="imagenDos" src="" alt="Imagen">
+            <img class="imagenDos" src="{% static '/img/notasIMG.png' %}" alt="Imagen">
+            <img class="imagenDos" src="{% static '/img/noticiasIMG.png' %}" alt="Imagen">
+            <img class="imagenDos" src="{% static '/img/youtubeIMG.png' %}" alt="Imagen">
         </div>
     </div>
 </div>

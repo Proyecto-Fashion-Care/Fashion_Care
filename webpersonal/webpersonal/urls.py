@@ -22,5 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home, name="home"),
     path("inicio/", views.inicio, name="inicio"),
-    path("api/", views.api, name="api"),
+    path("inicio/api/", views.api, name="api"),
 ]

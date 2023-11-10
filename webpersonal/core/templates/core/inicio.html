@@ -1,24 +1,25 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
-    <link rel="stylesheet" href="inicio.css" type="text/css">
+    <link rel="stylesheet" href="{%static 'css/inicio.css'%}" type="text/css">
 </head>
 <body>
-<header>
     <div id="agrupador">
         <h1 class="hgroup">Bienvenido</h1>
     </div>
-</header>
-<script>
-    // Establecemos el tiempo de espera en milisegundos
-    var tiempoDeEspera = 4000;
 
-    setTimeout(function () {
-        // Redirigimos a la nueva direccion después del tiempo de espera
-        window.location.href = "http://localhost:63343/Espejo_Web/api.html?_ijt=99cqh5r8lrug5h5d2vro3ipk7f";
-    }, tiempoDeEspera);
-</script>
+    <script>
+        // Establecemos el tiempo de espera en milisegundos
+        var tiempoDeEspera = 4000;
+
+        setTimeout(function () {
+            // Redirigimos a la nueva direccion después del tiempo de espera
+            window.location.href = "api/";
+        }, tiempoDeEspera);
+    </script>
 </body>
 </html>
