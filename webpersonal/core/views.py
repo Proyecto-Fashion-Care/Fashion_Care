@@ -5,12 +5,12 @@ import time
 # Create your views here.
 def home(request):
     try:
-        ser = serial.Serial('COM9', 9600)  # Ajusta el puerto según tu configuración
+        ser = serial.Serial('COM9', 9600)  
     except:
         print("No se pudo abrir el puerto serial")
     else:
         time.sleep(1)
-        ser.write(b'1')  # Envía un byte para encender la luz
+        ser.write(b'1') 
         print('portada')
         ser.close()
     finally:
@@ -18,12 +18,12 @@ def home(request):
 
 def api(request):
     try:
-        ser = serial.Serial('COM9', 9600)  # Ajusta el puerto según tu configuración
+        ser = serial.Serial('COM9', 9600)  
     except:
         print("No se pudo abrir el puerto serial")
     else:
         time.sleep(1)
-        ser.write(b'2')  # Envía un byte para encender la luz
+        ser.write(b'2')  
         print('api')
         ser.close()
     finally:
@@ -31,12 +31,12 @@ def api(request):
 
 def inicio(request):
     try:
-        ser = serial.Serial('COM9', 9600)  # Ajusta el puerto según tu configuración
+        ser = serial.Serial('COM9', 9600)  
     except:
         print("No se pudo abrir el puerto serial")
     else:
         time.sleep(1)
-        ser.write(b'3')  # Envía un byte para encender la luz
+        ser.write(b'3') 
         print('inicio')
         ser.close()
     finally:
