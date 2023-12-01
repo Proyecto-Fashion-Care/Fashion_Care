@@ -24,7 +24,7 @@ void loop() {
       digitalWrite(ledPins[1], HIGH);      
       digitalWrite(ledPins[2], LOW);
     }
-    if (option == '3'){
+    if (option == '4'){
       digitalWrite(ledPins[0], LOW);
       digitalWrite(ledPins[1], LOW);      
       digitalWrite(ledPins[2], HIGH);

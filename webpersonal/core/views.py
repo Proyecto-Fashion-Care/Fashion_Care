@@ -36,7 +36,7 @@ def inicio(request):
         print("No se pudo abrir el puerto serial")
     else:
         time.sleep(1)
-        ser.write(b'3') 
+        ser.write(b'4') 
         print('inicio')
         ser.close()
     finally:
