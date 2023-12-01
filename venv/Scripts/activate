@@ -36,11 +36,8 @@ deactivate () {
 
     unset VIRTUAL_ENV
     unset VIRTUAL_ENV_PROMPT
-<<<<<<< Updated upstream
-    if [ ! "${1:-}" = "nondestructive" ] ; then
-=======
+
     if [ ! "${1-}" = "nondestructive" ] ; then
->>>>>>> Stashed changes
     # Self destruct!
         unset -f deactivate
     fi
@@ -49,14 +46,10 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-<<<<<<< Updated upstream
-VIRTUAL_ENV="C:\Users\Germán Llorente\Desktop\germiprogramer\Fashion_Care\venv"
-=======
 VIRTUAL_ENV='C:\Users\PC\Desktop\UAX\Tercero\Desarrollo Orientado a Objetos\Repos\Fashion_Care\venv'
 if ([ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]) && $(command -v cygpath &> /dev/null) ; then
     VIRTUAL_ENV=$(cygpath -u "$VIRTUAL_ENV")
 fi
->>>>>>> Stashed changes
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
