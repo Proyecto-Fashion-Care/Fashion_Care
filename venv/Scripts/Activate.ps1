@@ -46,7 +46,6 @@ function global:pydoc {
     python -m pydoc $args
 }
 
-<<<<<<< Updated upstream
 
 <# Begin Activate script --------------------------------------------------- #>
 
