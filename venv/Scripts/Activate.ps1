@@ -20,7 +20,6 @@ function global:deactivate([switch] $NonDestructive) {
         Remove-Item env:VIRTUAL_ENV_PROMPT -ErrorAction SilentlyContinue
     }
 
-<<<<<<< Updated upstream
     # Just remove VIRTUAL_ENV_PROMPT altogether.
     if (Test-Path -Path Env:VIRTUAL_ENV_PROMPT) {
         Remove-Item -Path env:VIRTUAL_ENV_PROMPT
@@ -34,12 +33,12 @@ function global:deactivate([switch] $NonDestructive) {
     # Leave deactivate function in the global namespace if requested:
     if (-not $NonDestructive) {
         Remove-Item -Path function:deactivate
-=======
+
     if (!$NonDestructive) {
         # Self destruct!
         Remove-Item function:deactivate
         Remove-Item function:pydoc
->>>>>>> Stashed changes
+
     }
 }
 

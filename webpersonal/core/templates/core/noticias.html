@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: black; /* Agregado para cambiar el fondo a negro */
+      color: white; /* Agregado para cambiar el color del texto a blanco */
+    }
+
+    h1 {
+      color: #333; /* Agregado para cambiar el color del título principal */
+    }
+
+    h2 {
+      color: #333;
+      cursor: pointer;
+    }
+
+    h2:hover {
+      text-decoration: underline;
+    }
+
+    .noticias {
+      color: white; /* Agregado para cambiar el color del texto dentro del div de noticias a blanco */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Últimas Noticias</h1>
+
+  <h2>Buscar noticias por tema</h2>
+
+  <form method="post" action="{% url 'noticias' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Buscar</button>
+  </form>
+  <label for="idioma">Seleccionar Idioma:</label>
+  <select id="idioma" name="idioma">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+    <!-- Agrega más opciones según los idiomas que necesites -->
+  </select>
+
+  <hr>
+
+  <div class="noticias">
+    {% for article in filtered_news %}
+      <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+      <p>Publicado en: {{ article.publishedAt }}</p>
+      <hr>
+    {% endfor %}
+  </div>
+
+</body>
+</html>

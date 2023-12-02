@@ -41,3 +41,4 @@ def inicio(request):
         ser.close()
     finally:
         return render(request, 'core/inicio.html')
+    
