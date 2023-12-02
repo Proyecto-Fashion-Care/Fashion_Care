@@ -10,6 +10,12 @@ body {
     background: black;
 }
 
+.container {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
 #watch {
     display: flex;
     align-items: center;

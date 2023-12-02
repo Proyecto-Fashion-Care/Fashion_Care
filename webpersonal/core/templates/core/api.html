@@ -8,26 +8,10 @@
     <link rel="stylesheet" href="{%static 'css/api.css'%}" type="text/css">
 </head>
 <body>
-<div id="container">
-   <div id="watch">
-   </div>
-    <div id="image-container">
-        <div class="image-group">
-            <img class="imagenUno" src="{% static '/img/spotifyIMG.png' %}" alt="Imagen">
-            <a href="{% url 'obtener_clima' %}">
-                <img class="imagenUno" src="{% static '/img/clima.png' %}" alt="Imagen">
-            </a>
-            <a href="noticias.html">
-            <img name="noticias" class="imagenUno" src="{% static '/img/noticiasIMG.png' %}" alt="Imagen">
-            </a>
-        </div>
-        <div class="image-group">
-            <img class="imagenDos" src="{% static '/img/notasIMG.png' %}" alt="Imagen">
-            <img class="imagenDos" src="{% static '/img/mailIMG.png' %}" alt="Imagen">
-            <img class="imagenDos" src="{% static '/img/youtubeIMG.png' %}" alt="Imagen">
-        </div>
+    <div id="container">
+        <div id="watch"></div>   
     </div>
+    
     <script src="{% static '/js/scripts.js' %}"></script>
-</div>
 </body>
 </html>
