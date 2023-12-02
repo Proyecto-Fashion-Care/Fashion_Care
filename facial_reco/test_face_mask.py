@@ -15,7 +15,7 @@ dir_list = os.listdir(dataPath)
 
 
 mp_face_detection = mp.solutions.face_detection #Para detectar rostros
-LABELS = dir_list #Dos grupos que entrenado
+LABELS = dir_list #usuarios que hemos entrenado
 
 # Leemos el modelo
 face_mask = cv2.face.LBPHFaceRecognizer_create()
