@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from newsapi import NewsApiClient  # Asegúrate de que newsapi esté instalado
 from .forms import NewsForm
 import requests
+from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
@@ -78,3 +79,35 @@ def noticias(request):
     context = {'form': form}
     return render(request, 'core/noticias.html/', context)
 
+def pregunta_ciudad(request):
+    return render(request, 'core/pregunta_ciudad.html')
+
+def obtener_clima(request):
+    if request.method == 'POST':
+        ciudad = request.POST['ciudad', '']
+        api_key = "beca443305c5fcb28b732af45d0b0114"
+        if not ciudad:
+            mensaje_error = "Por favor, ingresa una ciudad."
+            return HttpResponse(mensaje_error, status=400)
+
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={api_key}&lang=es"
+
+        response = requests.get(url)
+        clima_data = response.json()
+
+        if response.status_code == 200:
+            temperatura_celsius = clima_data['main']['temp'] - 273.15
+
+            context = {
+                'temperatura': f"{temperatura_celsius:.2f}°C",
+                'condicion': clima_data['weather'][0]['description'],
+                'humedad': f"{clima_data['main']['humidity']}%",
+                'viento': f"{clima_data['wind']['speed']} m/s",
+            }
+
+            return render(request, 'core/clima.html', context)
+        else:
+            mensaje_error = f"No se pudieron obtener datos del tiempo para {ciudad}"
+            return HttpResponse(mensaje_error, status=response.status_code)
+
+    return render(request, 'core/pregunta_ciudad.html')
