@@ -10,3 +10,4 @@ urlpatterns = [
     path('inicio/api/pregunta-ciudad/', pregunta_ciudad, name='pregunta_ciudad'),
     path('inicio/api/clima/', obtener_clima, name='obtener_clima'),
 ]
+

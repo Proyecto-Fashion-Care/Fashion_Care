@@ -24,6 +24,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls")),
     path('inicio/api/noticias/', views.noticias, name='noticias'),
-    path('', include('webpersonal.core.urls')),
 
 ]
