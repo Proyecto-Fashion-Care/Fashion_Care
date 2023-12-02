@@ -15,7 +15,7 @@ LABELS = ["Con_mascarilla", "Sin_mascarilla"] #Dos grupos que entrenado
 
 # Leemos el modelo
 face_mask = cv2.face.LBPHFaceRecognizer_create()
-face_mask.read("face_mask_model.xml")
+face_mask.read("facial_reco/face_mask_model.xml")
 
 # Inicializamos la camara
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
@@ -56,7 +56,7 @@ with mp_face_detection.FaceDetection(
                     #Predecimos la imagen, para ver si llevamos mascarilla o no
                     result = face_mask.predict(face_image)
                     #Ponemos texto alrededor del rectangulo, con el resultado de la prediccion
-                    #cv2.putText(frame, "{}".format(result), (xmin, ymin - 5), 1, 1.3, (210, 124, 176), 1, cv2.LINE_AA)
+                    cv2.putText(frame, "{}".format(result), (xmin, ymin - 5), 1, 1.3, (210, 124, 176), 1, cv2.LINE_AA)
                     
                     if result[1] < 150:
                          #verde si tenemos mascarilla, rojo si no la llevamos

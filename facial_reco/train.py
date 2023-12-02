@@ -2,7 +2,7 @@ import cv2
 import os
 import numpy as np
 
-dataPath = "face_mask/Dataset_faces"
+dataPath = "facial_reco/Img"
 dir_list = os.listdir(dataPath)
 print("Lista archivos:", dir_list)
 
@@ -24,8 +24,8 @@ for name_dir in dir_list:
           labels.append(label)
      label += 1
 
-print("Etiqueta 0: ", np.count_nonzero(np.array(labels) == 0)) #Numero de rostros ocn mascarilla
-print("Etiqueta 1: ", np.count_nonzero(np.array(labels) == 1)) #Numero de rostros sin mascarilla
+for i in range(label):
+     print("Etiqueta ", i, ": ", np.count_nonzero(np.array(labels) == i)) #Numero de rostros por etiqueta
 
 # LBPH FaceRecognizer
 face_mask = cv2.face.LBPHFaceRecognizer_create()
@@ -35,5 +35,5 @@ print("Entrenando...")
 face_mask.train(facesData, np.array(labels))
 
 # Almacenar modelo
-face_mask.write("face_mask/face_mask_model.xml")
+face_mask.write("facial_reco/face_mask_model.xml")
 print("Modelo almacenado")
