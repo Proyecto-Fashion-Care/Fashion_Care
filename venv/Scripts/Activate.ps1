@@ -20,6 +20,7 @@ function global:deactivate([switch] $NonDestructive) {
         Remove-Item env:VIRTUAL_ENV_PROMPT -ErrorAction SilentlyContinue
     }
 
+<<<<<<< Updated upstream
     # Just remove VIRTUAL_ENV_PROMPT altogether.
     if (Test-Path -Path Env:VIRTUAL_ENV_PROMPT) {
         Remove-Item -Path env:VIRTUAL_ENV_PROMPT
@@ -33,12 +34,12 @@ function global:deactivate([switch] $NonDestructive) {
     # Leave deactivate function in the global namespace if requested:
     if (-not $NonDestructive) {
         Remove-Item -Path function:deactivate
-
+=======
     if (!$NonDestructive) {
         # Self destruct!
         Remove-Item function:deactivate
         Remove-Item function:pydoc
-
+>>>>>>> Stashed changes
     }
 }
 
@@ -46,6 +47,7 @@ function global:pydoc {
     python -m pydoc $args
 }
 
+<<<<<<< Updated upstream
 
 <# Begin Activate script --------------------------------------------------- #>
 
@@ -127,7 +129,7 @@ if (!$env:VIRTUAL_ENV_DISABLE_PROMPT) {
     }
     $env:VIRTUAL_ENV_PROMPT = $Prompt
 }
-
+<<<<<<< Updated upstream
 
 # Clear PYTHONHOME
 if (Test-Path -Path Env:PYTHONHOME) {
@@ -393,4 +395,5 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 # lMOfJY3zIEnrxag0ZMJciZX21rKW4ZFoU50q7Nd9+T830tfjwaJWfSNE9Sisr4id
 # UvBU/gsB/5d1HPBlxQfXvxm/TMUDeT4=
 # SIG # End signature block
-
+=======
+>>>>>>> Stashed changes
