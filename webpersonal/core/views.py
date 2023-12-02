@@ -70,9 +70,9 @@ def noticias(request):
                              (current_date - datetime.strptime(article['publishedAt'], "%Y-%m-%dT%H:%M:%SZ")) > timedelta(days=2)]
 
             context = {'filtered_news': filtered_news}
-            return render(request, 'noticias_app/noticias.html', context)
+            return render(request, 'core/noticias.html/', context)
     else:
         form = NewsForm()
     
     context = {'form': form}
-    return render(request, 'noticias_app/noticias.html', context)
+    return render(request, 'core/noticias.html/', context)
