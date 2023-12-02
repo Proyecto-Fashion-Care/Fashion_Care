@@ -26,6 +26,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls")),
     path('inicio/api/noticias/', views.noticias, name='noticias'),
-    path('clima/', views.obtener_clima, name='obtener_clima'),
 
 ]
