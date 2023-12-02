@@ -10,3 +10,17 @@ body {
     background: black;
 }
 
+#watch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    border: 2px solid rgb(195, 184, 184);
+    color: rgb(195, 184, 184);
+    border-radius: 5%;
+    font-family: "Digital-7", sans-serif;
+    font-size: 1.7rem;
+}
+
+
