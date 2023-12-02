@@ -47,7 +47,27 @@ def speakText(text):
     engine.setProperty("rate", 125) #Ajustamos la velocidad de lectura
     engine.say(text)
     engine.runAndWait()
+
+def launcer():
+    """
+    Función que inicializa el programa
+    """
     
+    #Capturamos el audio que queremos reproducir
+    audio = getAudio()
+
+    #Creamos dos hilos para que se pueda escribir y reproducir el audio simultaneamente
+    thread1 = threading.Thread(target=writeText, args=(audio,))
+    thread2 = threading.Thread(target=speakText, args=(audio,))
+
+    #Iniciamos los hilos
+    thread1.start()
+    thread2.start()
+
+
+
+
+
 
 
             
