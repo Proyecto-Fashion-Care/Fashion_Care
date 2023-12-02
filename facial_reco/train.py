@@ -15,7 +15,7 @@ for name_dir in dir_list:
      
      for file_name in os.listdir(dir_path):
           image_path = dir_path + "/" + file_name
-          print(image_path)
+          #print(image_path)
           image = cv2.imread(image_path, 0)
           #cv2.imshow("Image", image)  #Para mostrar la imagen
           #cv2.waitKey(10) #Delay de 10 ms
@@ -24,8 +24,8 @@ for name_dir in dir_list:
           labels.append(label)
      label += 1
 
-for i in range(label):
-     print("Etiqueta ", i, ": ", np.count_nonzero(np.array(labels) == i)) #Numero de rostros por etiqueta
+for i in range(len(dir_list)):
+     print(dir_list[i] + ": ", np.count_nonzero(np.array(labels) == i)) #Numero de imagenes por usuario
 
 # LBPH FaceRecognizer
 face_mask = cv2.face.LBPHFaceRecognizer_create()
