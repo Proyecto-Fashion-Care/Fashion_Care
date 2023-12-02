@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core import views
+from clima import views
+
 
 
 
@@ -24,5 +26,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls")),
     path('inicio/api/noticias/', views.noticias, name='noticias'),
+    path('clima/', views.obtener_clima, name='obtener_clima'),
 
 ]
