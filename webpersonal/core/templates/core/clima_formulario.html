@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Clima</title>
+</head>
+<body>
+    <h1>Consulta de Clima</h1>
+    <form method="post" action="{% url 'obtener_clima' %}">
+        {% csrf_token %}
+        <label for="ciudad">Ingresa tu ciudad:</label>
+        <input type="text" id="ciudad" name="ciudad" required>
+        <button type="submit">Consultar Clima</button>
+    </form>
+</body>
+</html>

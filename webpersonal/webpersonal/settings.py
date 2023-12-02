@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "core", #Agregamos la app core
+    "clima", #Agregamos la app clima
 ]
 
 MIDDLEWARE = [

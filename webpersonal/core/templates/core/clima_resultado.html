@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado del Clima</title>
+</head>
+<body>
+    <h1>Resultado del Clima</h1>
+    {% if datos_clima %}
+        <p>Datos del tiempo:</p>
+        <p>Temperatura: {{ datos_clima.temperatura_celsius }}°C</p>
+        <p>Condición: {{ datos_clima.condicion }}</p>
+        <p>Humedad: {{ datos_clima.humedad }}%</p>
+        <p>Viento: {{ datos_clima.viento }} m/s</p>
+    {% else %}
+        <p>Error: No se pudieron obtener datos del tiempo para la ciudad proporcionada.</p>
+    {% endif %}
+    <a href="{% url 'obtener_clima' %}">Volver a consultar</a>
+</body>
+</html>
