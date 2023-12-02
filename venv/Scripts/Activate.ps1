@@ -127,7 +127,7 @@ if (!$env:VIRTUAL_ENV_DISABLE_PROMPT) {
     }
     $env:VIRTUAL_ENV_PROMPT = $Prompt
 }
-<<<<<<< Updated upstream
+
 
 # Clear PYTHONHOME
 if (Test-Path -Path Env:PYTHONHOME) {
@@ -393,5 +393,4 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 # lMOfJY3zIEnrxag0ZMJciZX21rKW4ZFoU50q7Nd9+T830tfjwaJWfSNE9Sisr4id
 # UvBU/gsB/5d1HPBlxQfXvxm/TMUDeT4=
 # SIG # End signature block
-=======
->>>>>>> Stashed changes
+
