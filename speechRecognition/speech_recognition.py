@@ -31,6 +31,16 @@ def getAudio():
             except sr.WaitTimeoutError:
                 print("Time out.")
 
+def writeText(text):
+    """
+    Función para escribir texto
+    """
+    for char in text:
+        print(char, end="")
+        time.sleep(0.07)
+
+
+
             
 
 
