@@ -6,7 +6,6 @@ pylint-celery
 django-ckeditor
 pyserial
 SpeechRecognition==3.10.0
-PyAudio
 pyttsx3
 pyobjc
 datetime 
