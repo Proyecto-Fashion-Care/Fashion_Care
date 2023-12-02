@@ -29,7 +29,9 @@
     <div id="image-container">
         <div class="image-group">
             <img class="imagenUno" src="{% static '/img/spotifyIMG.png' %}" alt="Imagen">
-            <img class="imagenUno" src="{% static '/img/clima.png' %}" alt="Imagen">
+            <a href="{% url 'obtener_clima' %}">
+                <img class="imagenUno" src="{% static '/img/clima.png' %}" alt="Imagen">
+            </a>
             <a href="noticias.html">
             <img name="noticias" class="imagenUno" src="{% static '/img/noticiasIMG.png' %}" alt="Imagen">
             </a>

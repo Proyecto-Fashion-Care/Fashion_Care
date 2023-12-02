@@ -84,7 +84,7 @@ def pregunta_ciudad(request):
 
 def obtener_clima(request):
     if request.method == 'POST':
-        ciudad = request.POST['ciudad', '']
+        ciudad = request.POST.get('ciudad', '')
         api_key = "beca443305c5fcb28b732af45d0b0114"
         if not ciudad:
             mensaje_error = "Por favor, ingresa una ciudad."
