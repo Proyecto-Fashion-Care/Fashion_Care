@@ -39,6 +39,15 @@ def writeText(text):
         print(char, end="")
         time.sleep(0.07)
 
+def speakText(text):
+    """
+    Función que reproduce como audio el texto introducido
+    """
+    engine = pyttsx3.init()
+    engine.setProperty("rate", 125) #Ajustamos la velocidad de lectura
+    engine.say(text)
+    engine.runAndWait()
+    
 
 
             
