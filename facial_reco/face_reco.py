@@ -20,7 +20,7 @@ cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 with mp_face_detection.FaceDetection(
      min_detection_confidence=0.5) as face_detection:
 
-     while True:
+     while counter <= 300:
           #Leemos la imagen de la camara: ret = True si se leyo correctamente y frame es la imagen
           ret, frame = cap.read()
           if ret == False: 
@@ -45,16 +45,22 @@ with mp_face_detection.FaceDetection(
                     cv2.rectangle(frame, (xmin, ymin), (xmin + w, ymin + h), (0, 255, 0), 5)
                     #Creamos una imagen con la cara detectada (dentro del rectangulo que detecta la cara)
                     face_image = frame[ymin : ymin + h, xmin : xmin + w]
+                    #Si no se detecta la cara, continuamos para evitar que de error
+                    if face_image.size == 0:
+                         continue
                     #Convertimos la imagen a escala de grises(reducir el procesamiento de la imagen) y la redimensionamos a 72x72 pixeles
                     face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
                     face_image = cv2.resize(face_image, (72, 72), interpolation=cv2.INTER_CUBIC)
                     #cv2.imshow("Face", face_image) #Mostramos la imagen redimensionada, en blanco y negro
                     #Guardamos una imagen, cada 10 segundos
-                    if counter <= 100:
+                    if counter <= 300:
                         img = f'img{counter}.jpg'
                         ruta_imagen = os.path.join(output_folder, img)
                         cv2.imwrite(ruta_imagen, face_image)
+                    else:
+                         break
                     counter += 1
+
 
           cv2.imshow("Frame", frame)
           k = cv2.waitKey(1)

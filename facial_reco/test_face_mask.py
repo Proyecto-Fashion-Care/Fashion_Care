@@ -10,8 +10,12 @@ ser = serial.Serial('COM9', 9600)
 time.sleep(1)  # Esperamos 1 segundos
 '''
 
+dataPath = "facial_reco/Img"
+dir_list = os.listdir(dataPath)
+
+
 mp_face_detection = mp.solutions.face_detection #Para detectar rostros
-LABELS = ["Con_mascarilla", "Sin_mascarilla"] #Dos grupos que entrenado
+LABELS = dir_list #Dos grupos que entrenado
 
 # Leemos el modelo
 face_mask = cv2.face.LBPHFaceRecognizer_create()
@@ -48,6 +52,9 @@ with mp_face_detection.FaceDetection(
                     #cv2.rectangle(frame, (xmin, ymin), (xmin + w, ymin + h), (0, 255, 0), 5)
                     #Creamos una imagen con la cara detectada (dentro del rectangulo que detecta la cara)
                     face_image = frame[ymin : ymin + h, xmin : xmin + w]
+                    #Si no se detecta la cara, continuamos para evitar que de error
+                    if face_image.size == 0:
+                         continue
                     #Convertimos la imagen a escala de grises(reducir el procesamiento de la imagen) y la redimensionamos a 72x72 pixeles
                     face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
                     face_image = cv2.resize(face_image, (72, 72), interpolation=cv2.INTER_CUBIC)
@@ -58,20 +65,22 @@ with mp_face_detection.FaceDetection(
                     #Ponemos texto alrededor del rectangulo, con el resultado de la prediccion
                     cv2.putText(frame, "{}".format(result), (xmin, ymin - 5), 1, 1.3, (210, 124, 176), 1, cv2.LINE_AA)
                     
-                    if result[1] < 150:
-                         #verde si tenemos mascarilla, rojo si no la llevamos
-                         if LABELS[result[0]] == "Con_mascarilla":
-                              color = (0, 255, 0) 
-                              #ser.write(b'1')
-                         else:
-                              color = (0, 0, 255)
-                              #ser.write(b'2')
-                         cv2.putText(frame, "{}".format(LABELS[result[0]]), (xmin, ymin - 15), 2, 1, color, 1, cv2.LINE_AA) #Mostramos el texto (Con mascarilla o sin mascarilla) 
-                         cv2.rectangle(frame, (xmin, ymin), (xmin + w, ymin + h), color, 2) #Mostramos el rectangulo que detecta la cara
+                    #verde si tenemos mascarilla, rojo si no la llevamos
+                    if LABELS[result[0]] in  LABELS:
+                         color = (0, 255, 0) 
+                         #ser.write(b'1')
+                    else:
+                         color = (0, 0, 255)
+                         #ser.write(b'2')
+                    cv2.putText(frame, "{}".format(LABELS[result[0]]), (xmin, ymin - 15), 2, 1, color, 1, cv2.LINE_AA) #Mostramos el texto (Con mascarilla o sin mascarilla) 
+                    cv2.rectangle(frame, (xmin, ymin), (xmin + w, ymin + h), color, 2) #Mostramos el rectangulo que detecta la cara
+
           cv2.imshow("Frame", frame)
           k = cv2.waitKey(1)
           if k == 27: #Si le damos al escape (Esc) salimos del programa
                break
+
+
 cap.release()
 cv2.destroyAllWindows()
 #ser.close() #Cerramos el puerto serial
