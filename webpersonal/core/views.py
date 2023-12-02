@@ -4,6 +4,7 @@ import time
 from datetime import datetime, timedelta
 from newsapi import NewsApiClient  # Asegúrate de que newsapi esté instalado
 from .forms import NewsForm
+import requests
 
 # Create your views here.
 def home(request):
@@ -13,7 +14,7 @@ def home(request):
         print("No se pudo abrir el puerto serial")
     else:
         time.sleep(1)
-        ser.write(b'1') 
+        ser.write(b'1')
         print('portada')
         ser.close()
     finally:
@@ -76,3 +77,4 @@ def noticias(request):
     
     context = {'form': form}
     return render(request, 'core/noticias.html/', context)
+

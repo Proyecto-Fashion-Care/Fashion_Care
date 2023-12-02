@@ -1,6 +1,6 @@
 import requests
 
-def main():
+def obtener_datos_clima():
     api_key = "beca443305c5fcb28b732af45d0b0114"  # Reemplaza con tu clave API
     city = input("Ingresa tu ciudad: ")
     
@@ -23,5 +23,3 @@ def main():
     else:
         print(f"Error: No se pudieron obtener datos del tiempo para {city}")
 
-if __name__ == "__main__":
-    main()
