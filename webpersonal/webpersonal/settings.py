@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "webpersonal.core", #Agregamos la app core
+    "core", #Agregamos la app core
 ]
 
 MIDDLEWARE = [

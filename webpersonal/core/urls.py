@@ -1,11 +1,14 @@
-from django.contrib import admin
-from django.urls import path, include
-from core import views  # Asegúrate de que la importación sea correcta
+
+from django.urls import path
+from . import views
+from .views import pregunta_ciudad, obtener_clima
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("core.urls")),  # Incluye las URLs de la aplicación core
-    path('inicio/api/noticias/', views.noticias, name='noticias'),
+    path("", views.home, name="home"),
+    path("inicio/", views.inicio, name="inicio"),
+    path("inicio/api/", views.api, name="api"),
+    path('inicio/api/noticias.html/', views.noticias, name='noticias'),
+    path('inicio/api/pregunta-ciudad/', pregunta_ciudad, name='pregunta_ciudad'),
+    path('inicio/api/clima/', obtener_clima, name='obtener_clima'),
 ]
-
 
