@@ -10,7 +10,7 @@ ser = serial.Serial('COM9', 9600)
 time.sleep(1)  # Esperamos 1 segundos
 '''
 
-dataPath = "facial_reco/Img"
+dataPath = "facial_reco/DatasetFaces"
 dir_list = os.listdir(dataPath)
 
 

@@ -2,7 +2,7 @@ import cv2
 import os
 import numpy as np
 
-dataPath = "facial_reco/Img"
+dataPath = "facial_reco/DatasetFaces"
 dir_list = os.listdir(dataPath)
 print("Lista archivos:", dir_list)
 

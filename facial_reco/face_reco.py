@@ -6,7 +6,7 @@ import mediapipe as mp
 mp_face_detection = mp.solutions.face_detection #Para detectar rostros
 
 user = input('usuario: ')
-output_folder = f'facial_reco/img/{user}'
+output_folder = f'facial_reco/DatasetFaces/{user}'
 
 # Verificar si la carpeta existe, si no, crearla
 if not os.path.exists(output_folder):
@@ -54,7 +54,7 @@ with mp_face_detection.FaceDetection(
                     #cv2.imshow("Face", face_image) #Mostramos la imagen redimensionada, en blanco y negro
                     #Guardamos una imagen, cada 10 segundos
                     if counter <= 400:
-                        img = f'img{counter}.jpg'
+                        img = f'{user}{counter}.jpg'
                         ruta_imagen = os.path.join(output_folder, img)
                         cv2.imwrite(ruta_imagen, face_image)
                     else:
