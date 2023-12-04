@@ -75,9 +75,12 @@ with mp_face_detection.FaceDetection(
                     
                     #verde si detectamos al usuario y rojo si no 
                     if result[1] <= 140:
-                         color = (0, 255, 0) 
-                         usuario = LABELS[result[0]]
-                         #ser.write(b'1')
+                         try:
+                              color = (0, 255, 0) 
+                              usuario = LABELS[result[0]]
+                              #ser.write(b'1')
+                         except:
+                              continue                              
                     else:
                          color = (0, 0, 255)
                          usuario = 'Desconocido'
