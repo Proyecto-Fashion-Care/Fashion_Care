@@ -10,6 +10,7 @@ class facialRecognition:
         self.dataPath = dataPath
         self.dir_list = os.listdir(self.dataPath) #Carpetas dentro del path (usuarios)
 
+
     #Metodo para generar imagenes de los rostros de los usuarios
     def recognize(self):
         mp_face_detection = mp.solutions.face_detection #Para detectar rostros
@@ -125,7 +126,7 @@ class facialRecognition:
     
     def predict(self):
         mp_face_detection = mp.solutions.face_detection #Para detectar rostros
-        LABELS = dir_list #usuarios que hemos entrenado
+        LABELS = self.dir_list #usuarios que hemos entrenado
 
         # Leemos el modelo
         face_reco = cv2.face.LBPHFaceRecognizer_create()
@@ -209,8 +210,12 @@ class facialRecognition:
         cv2.destroyAllWindows()
         #ser.close() #Cerramos el puerto serial
 
-        moda = mode(moda) #Obtenemos la moda de los resultados del reconocimiento facial
-        print(moda) #Mostramos la moda
+        self.prediction = mode(moda) #Obtenemos la moda de los resultados del reconocimiento facial
+        print(self.prediction) #Mostramos la moda
+
+    
+    def getPrediction(self):
+        return self.prediction
 
 
 
