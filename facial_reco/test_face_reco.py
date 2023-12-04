@@ -2,7 +2,7 @@ import cv2
 import os
 import mediapipe as mp
 import serial
-import time
+from statistics import mode
 
 '''
 #Iniciamos el puerto serial
@@ -29,6 +29,8 @@ face_reco.read("facial_reco/LBPHFaceModel.xml")
 
 # Inicializamos la camara
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+moda = [] # Futura lista con la que obtendremos la moda de los resultados del reconocimiento facial
 
 with mp_face_detection.FaceDetection(
      min_detection_confidence=0.5) as face_detection:
@@ -72,7 +74,7 @@ with mp_face_detection.FaceDetection(
                     cv2.putText(frame, "{}".format(result), (xmin, ymin - 5), 1, 1.3, (210, 124, 176), 1, cv2.LINE_AA)
                     
                     #verde si detectamos al usuario y rojo si no 
-                    if result[1] <= 130:
+                    if result[1] <= 140:
                          color = (0, 255, 0) 
                          usuario = LABELS[result[0]]
                          #ser.write(b'1')
@@ -80,8 +82,10 @@ with mp_face_detection.FaceDetection(
                          color = (0, 0, 255)
                          usuario = 'Desconocido'
                          #ser.write(b'2')
+
                     cv2.putText(frame, f"{usuario}", (xmin, ymin - 15), 2, 1, color, 1, cv2.LINE_AA) #Mostramos el usuario
                     cv2.rectangle(frame, (xmin, ymin), (xmin + w, ymin + h), color, 2) #Mostramos el rectangulo que detecta la cara
+                    moda.append(usuario)
 
           cv2.imshow("Frame", frame)
           k = cv2.waitKey(1)
@@ -92,3 +96,6 @@ with mp_face_detection.FaceDetection(
 cap.release()
 cv2.destroyAllWindows()
 #ser.close() #Cerramos el puerto serial
+
+moda = mode(moda) #Obtenemos la moda de los resultados del reconocimiento facial
+print(moda) #Mostramos la moda
