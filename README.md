@@ -36,10 +36,14 @@ Con el enfoque en el desarrollo técnico, se configuró un entorno virtual y se 
 **VI. Integración Tecnológica:**
 Actualmente, el proyecto se encuentra en el sprint 2, donde se está trabajando en la integración de Django con Arduino. Este paso es crucial para dotar al espejo inteligente de funcionalidades avanzadas y permitir la interacción con el entorno físico.
 
-**VII. Próximos Pasos:**
+**VII. Desarrollos Recientes:**
+
+Desde el último informe, el equipo ha logrado implementar reconocimiento facial para iniciar sesión en el espejo. Además, se ha conectado el espejo con Arduino, permitiendo la ejecución de diversas funciones. Ahora, el espejo muestra información en tiempo real del clima en una ciudad específica a través de una API del tiempo. También proporciona noticias actualizadas, reproduce videos de YouTube, se conecta con Gmail a través de un chatbot en desarrollo y reproduce música.
+
+**VIII. Próximos Pasos:**
 El equipo continuará trabajando en el desarrollo del proyecto, centrándose en la implementación de las funcionalidades planificadas y asegurando una integración exitosa entre los componentes tecnológicos. Se planifican reuniones regulares para evaluar el progreso y abordar cualquier desafío que pueda surgir.
 
-Este informe proporciona una visión general de las etapas iniciales del proyecto. Se espera que, con la colaboración continua entre los distintos grupos, se logre un espejo inteligente innovador y orientado al impacto social. El equipo está comprometido con el éxito del proyecto y anticipa resultados significativos en las siguientes fases de desarrollo.
+Este informe proporciona una visión detallada de los avances desde la fecha inicial. La colaboración continua entre los distintos grupos ha llevado a un espejo inteligente innovador y orientado al impacto social. El equipo está comprometido con el éxito del proyecto y anticipa resultados significativos en las siguientes fases de desarrollo.
 
 
----- 10/11/2023
+---- 10/11/2023//04/12/2023

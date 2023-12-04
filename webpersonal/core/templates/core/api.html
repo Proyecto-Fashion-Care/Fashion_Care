@@ -13,6 +13,13 @@
     </div>
 
     <nav class="menu">
+        <script type="module">
+            import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+            Chatbot.init({
+                chatflowid: "75ba8312-6937-488a-a1a9-f4d094c2160a",
+                apiHost: "https://flowise-m7dn.onrender.com",
+            })
+        </script>
         <input type="checkbox" id="menu-toggler" class="menu-toggler" checked="checked">
         <label for="menu-toggler"></label>
         <ul>

@@ -2,7 +2,7 @@ import cv2
 import os
 import numpy as np
 
-dataPath = "facial_reco/Img"
+dataPath = "facial_reco/DatasetFaces"
 dir_list = os.listdir(dataPath)
 print("Lista archivos:", dir_list)
 
@@ -28,12 +28,20 @@ for i in range(len(dir_list)):
      print(dir_list[i] + ": ", np.count_nonzero(np.array(labels) == i)) #Numero de imagenes por usuario
 
 # LBPH FaceRecognizer
-face_mask = cv2.face.LBPHFaceRecognizer_create()
+face_reco = cv2.face.LBPHFaceRecognizer_create()
+
+# Eigen FaceRecognizer
+#face_reco = cv2.face.EigenFaceRecognizer_create()
+
+# Fisher FaceRecognizer
+#face_reco = cv2.face.FisherFaceRecognizer_create()
 
 # Entrenamiento
 print("Entrenando...")
-face_mask.train(facesData, np.array(labels))
+face_reco.train(facesData, np.array(labels))
 
 # Almacenar modelo
-face_mask.write("facial_reco/face_mask_model.xml")
+face_reco.write("facial_reco/LBPHFaceModel.xml")
+#face_reco.write("facial_reco/eigenFaceModel.xml")
+#face_reco.write("facial_reco/fisherFaceModel.xml")
 print("Modelo almacenado")
