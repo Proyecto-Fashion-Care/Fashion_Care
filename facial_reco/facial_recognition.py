@@ -11,6 +11,7 @@ class facialRecognition:
         self.dir_list = os.listdir(self.dataPath) #Carpetas dentro del path (usuarios)
 
 
+
     #Metodo para generar imagenes de los rostros de los usuarios
     def recognize(self):
         mp_face_detection = mp.solutions.face_detection #Para detectar rostros
@@ -29,7 +30,7 @@ class facialRecognition:
         with mp_face_detection.FaceDetection(
             min_detection_confidence=0.5) as face_detection:
 
-            while True:
+            while counter <= 400:
                 #Leemos la imagen de la camara: ret = True si se leyo correctamente y frame es la imagen
                 ret, frame = cap.read()
                 if ret == False: 
@@ -61,13 +62,11 @@ class facialRecognition:
                         face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
                         face_image = cv2.resize(face_image, (72, 72), interpolation=cv2.INTER_CUBIC)
                         #cv2.imshow("Face", face_image) #Mostramos la imagen redimensionada, en blanco y negro
-                        #Guardamos una imagen, cada 10 segundos
-                        if counter <= 300:
-                            img = f'{user}{counter}.jpg'
-                            ruta_imagen = os.path.join(output_folder, img)
-                            cv2.imwrite(ruta_imagen, face_image)
-                        else:
-                            break
+                        
+                        img = f'{user}{counter}.jpg'
+                        ruta_imagen = os.path.join(output_folder, img)
+                        cv2.imwrite(ruta_imagen, face_image)
+
                         counter += 1
 
                 cv2.imshow("Frame", frame)
@@ -77,6 +76,7 @@ class facialRecognition:
 
         cap.release()
         cv2.destroyAllWindows()
+        
 
 
     #Metodo para entrenar las imagenes de los usuarios, utilizando un modelo (LBPHFaceRecognizer)
@@ -122,6 +122,7 @@ class facialRecognition:
         #face_reco.write("facial_reco/eigenFaceModel.xml")
         #face_reco.write("facial_reco/fisherFaceModel.xml")
         print("Modelo almacenado")
+
 
     
     def predict(self):
@@ -211,9 +212,9 @@ class facialRecognition:
         #ser.close() #Cerramos el puerto serial
 
         self.prediction = mode(moda) #Obtenemos la moda de los resultados del reconocimiento facial
-        print(self.prediction) #Mostramos la moda
 
     
+
     def getPrediction(self):
         return self.prediction
 
@@ -221,3 +222,8 @@ class facialRecognition:
 
 
 facialReco = facialRecognition("facial_reco/DatasetFaces")
+facialReco.recognize()
+#Hay que hacer un await para que se termine de ejecutar el metodo recognize
+facialReco.train()
+facialReco.predict()
+print(facialReco.getPrediction())
