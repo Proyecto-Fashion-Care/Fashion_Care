@@ -21,6 +21,9 @@ def home(request):
     finally:
         return render(request, 'core/index.html')
 
+def login(request):
+    return render(request, 'core/login.html')
+
 def api(request):
     try:
         ser = serial.Serial('COM9', 9600)  

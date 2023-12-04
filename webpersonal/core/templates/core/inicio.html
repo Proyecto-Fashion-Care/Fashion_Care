@@ -1,25 +1,19 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="{%static 'css/inicio.css'%}" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
 </head>
-<body>
-    <div id="agrupador">
-        <h1 class="hgroup">Bienvenido</h1>
-    </div>
-
-    <script>
-        // Establecemos el tiempo de espera en milisegundos
-        var tiempoDeEspera = 4000;
-
-        setTimeout(function () {
-            // Redirigimos a la nueva direccion después del tiempo de espera
-            window.location.href = "api/";
-        }, tiempoDeEspera);
-    </script>
-</body>
+    <body>
+        <div class="container">
+            <h1 class="transparent">
+                Bienvenido {{usuario}}
+            </h1>
+        </div>
+    </body>
+    <script src="{% static 'js/inicio.js' %}"></script>
 </html>
