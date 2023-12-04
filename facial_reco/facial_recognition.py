@@ -61,6 +61,7 @@ class facialRecognition:
                         #Convertimos la imagen a escala de grises(reducir el procesamiento de la imagen) y la redimensionamos a 72x72 pixeles
                         face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
                         face_image = cv2.resize(face_image, (72, 72), interpolation=cv2.INTER_CUBIC)
+                        cv2.putText(frame, "loading... {}%".format(round(counter/4)), (xmin, ymin - 5), 1, 1.3, (0, 255, 0), 1, cv2.LINE_AA)
                         #cv2.imshow("Face", face_image) #Mostramos la imagen redimensionada, en blanco y negro
                         
                         img = f'{user}{counter}.jpg'
@@ -222,7 +223,7 @@ class facialRecognition:
 
 
 facialReco = facialRecognition("facial_reco/DatasetFaces")
-facialReco.recognize()
+#facialReco.recognize()
 #Hay que hacer un await para que se termine de ejecutar el metodo recognize
 facialReco.train()
 facialReco.predict()
