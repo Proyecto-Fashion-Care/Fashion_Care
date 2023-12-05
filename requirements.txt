@@ -7,7 +7,6 @@ django-ckeditor
 pyserial
 SpeechRecognition==3.10.0
 pyttsx3
-pyobjc
 newsapi-python
 numpy
 opencv-python
