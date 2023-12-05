@@ -6,6 +6,8 @@ from newsapi import NewsApiClient  # Asegúrate de que newsapi esté instalado
 from .forms import NewsForm
 import requests
 from django.http import HttpResponse
+from utils.facial_reco.facial_recognition import facialRecognition
+
 
 # Create your views here.
 def home(request):
@@ -114,3 +116,15 @@ def obtener_clima(request):
             return HttpResponse(mensaje_error, status=response.status_code)
 
     return render(request, 'core/pregunta_ciudad.html')
+
+
+def reconocimiento_facial(request):
+    facialReco = facialRecognition("utils/facial_reco/DatasetFaces")
+    #facialReco.recognize()
+
+    #facialReco.train()
+    facialReco.predict()
+    prediction = facialReco.getPrediction()
+
+    #return JsonResponse({'prediction': prediction})
+    return render(request, 'core/inicio.html', {'usuario': prediction})
