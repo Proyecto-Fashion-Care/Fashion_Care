@@ -251,7 +251,6 @@ class facialRecognition:
 facialReco = facialRecognition("facial_reco/DatasetFaces")
 #facialReco.recognize()
 #Hay que hacer un await para que se termine de ejecutar el metodo recognize
-facialReco.train()
-#facialReco.predict()
-#print(facialReco.getPrediction())
-#facialReco.removeFiles("esther")
+#facialReco.train()
+facialReco.predict()
+print(facialReco.getPrediction())
