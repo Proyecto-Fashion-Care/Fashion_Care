@@ -8,12 +8,26 @@ class facialRecognition:
 
     def __init__(self, dataPath) -> None:
         self.dataPath = dataPath
-        self.dir_list = os.listdir(self.dataPath) #Carpetas dentro del path (usuarios)
+        try:
+            self.dir_list = os.listdir(self.dataPath) #Carpetas dentro del path (usuarios)
+        except:
+            os.makedirs(self.dataPath)
 
+    #Funcion para eliminar los archivos pares de los usuarios
+    def removeFiles(self, user):
+        ruta = f'{self.dataPath}/{user}'
+        direccion = os.listdir(ruta)
+        # Iterar sobre los archivos y eliminar los pares
+        print(f'Eliminando algunos archivos de {user}...')
+        for archivo in direccion:
+            # Comprobamos si el archivo es un archivo de imagen y si su número es par
+            if archivo.startswith(user) and archivo.endswith('.jpg') and archivo[len(user):-4].isdigit() and int(archivo[len(user):-4]) % 2 == 0:
+                ruta_completa = os.path.join(ruta, archivo)
+                os.remove(ruta_completa)
 
 
     #Metodo para generar imagenes de los rostros de los usuarios
-    def recognize(self):
+    def recognize(self, num_fotos=200):
         mp_face_detection = mp.solutions.face_detection #Para detectar rostros
         user = input('usuario: ')
         output_folder = f'{self.dataPath}/{user}'
@@ -30,7 +44,7 @@ class facialRecognition:
         with mp_face_detection.FaceDetection(
             min_detection_confidence=0.5) as face_detection:
 
-            while counter <= 400:
+            while counter <= num_fotos:
                 #Leemos la imagen de la camara: ret = True si se leyo correctamente y frame es la imagen
                 ret, frame = cap.read()
                 if ret == False: 
@@ -61,7 +75,7 @@ class facialRecognition:
                         #Convertimos la imagen a escala de grises(reducir el procesamiento de la imagen) y la redimensionamos a 72x72 pixeles
                         face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
                         face_image = cv2.resize(face_image, (72, 72), interpolation=cv2.INTER_CUBIC)
-                        cv2.putText(frame, "loading... {}%".format(round(counter/4)), (xmin, ymin - 5), 1, 1.3, (0, 255, 0), 1, cv2.LINE_AA)
+                        cv2.putText(frame, "loading... {}%".format(round(counter/(num_fotos/100))), (xmin, ymin - 5), 1, 1.3, (0, 255, 0), 1, cv2.LINE_AA)
                         #cv2.imshow("Face", face_image) #Mostramos la imagen redimensionada, en blanco y negro
                         
                         img = f'{user}{counter}.jpg'
@@ -83,6 +97,16 @@ class facialRecognition:
     #Metodo para entrenar las imagenes de los usuarios, utilizando un modelo (LBPHFaceRecognizer)
     def train(self):
         print("Lista archivos:", self.dir_list)
+        print("Hay un total de ", len(self.dir_list), " usuarios registrados")
+
+        #Verificamos que no haya mas de 3 usuarios registrados para reducir procesamiento
+        if len(self.dir_list) > 3:
+            print('Ha alcanzado el limite de usuarios registrados')
+            eliminate = self.dir_list[3:]
+            for user in eliminate:
+                print('Eliminar usuario: ', user)
+                #os.remove(f'{self.dataPath}/{user}')
+            return None
 
         labels = [] #Etiquetas asignadas a las imagenes
         facesData = [] #Rostros detectados
@@ -103,6 +127,8 @@ class facialRecognition:
             label += 1
 
         for i in range(len(self.dir_list)):
+            if np.count_nonzero(np.array(labels) == i) > 200:
+                self.removeFiles(self.dir_list[i])
             print(self.dir_list[i] + ": ", np.count_nonzero(np.array(labels) == i)) #Numero de imagenes por usuario
 
         # LBPH FaceRecognizer
@@ -226,5 +252,6 @@ facialReco = facialRecognition("facial_reco/DatasetFaces")
 #facialReco.recognize()
 #Hay que hacer un await para que se termine de ejecutar el metodo recognize
 facialReco.train()
-facialReco.predict()
-print(facialReco.getPrediction())
+#facialReco.predict()
+#print(facialReco.getPrediction())
+#facialReco.removeFiles("esther")
