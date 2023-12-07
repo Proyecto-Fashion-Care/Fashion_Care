@@ -118,13 +118,15 @@ def obtener_clima(request):
     return render(request, 'core/pregunta_ciudad.html')
 
 
-def reconocimiento_facial(request):
+def registro_facial(request):
     facialReco = facialRecognition("utils/facial_reco/DatasetFaces")
-    #facialReco.recognize()
+    facialReco.recognize()
+    facialReco.train()
+    return render(request, 'core/confirmacion_registro.html')
 
-    #facialReco.train()
+
+def inicio_sesion_facial(request):
+    facialReco = facialRecognition("utils/facial_reco/DatasetFaces")
     facialReco.predict()
     prediction = facialReco.getPrediction()
-
-    #return JsonResponse({'prediction': prediction})
-    return render(request, 'core/inicio.html', {'usuario': prediction})
+    return render(request, 'core/confirmacion.html', {'usuario': prediction})

@@ -14,6 +14,7 @@ class facialRecognition:
             os.makedirs(self.dataPath)
             self.dir_list = os.listdir(self.dataPath) 
 
+
     #Funcion para eliminar los archivos pares de los usuarios
     def removeFiles(self, user):
         ruta = f'{self.dataPath}/{user}'
@@ -219,6 +220,7 @@ class facialRecognition:
                             try:
                                 color = (0, 255, 0) 
                                 usuario = LABELS[result[0]]
+                                print(usuario)
                                 #ser.write(b'1')
                             except:
                                 continue                              
@@ -243,13 +245,15 @@ class facialRecognition:
         self.prediction = mode(moda) #Obtenemos la moda de los resultados del reconocimiento facial
 
 
+
     def getPrediction(self):
         return self.prediction
+
 
 '''
 facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
 #facialReco.recognize()
 #facialReco.train()
 facialReco.predict()
-#print(facialReco.getPrediction())
+print(facialReco.getPrediction())
 '''
