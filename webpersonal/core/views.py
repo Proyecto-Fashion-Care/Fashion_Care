@@ -123,8 +123,8 @@ def reconocimiento_facial(request):
     #facialReco.recognize()
 
     #facialReco.train()
-    #facialReco.predict()
-    #prediction = facialReco.getPrediction()
+    facialReco.predict()
+    prediction = facialReco.getPrediction()
 
     #return JsonResponse({'prediction': prediction})
-    return render(request, 'core/inicio.html')
+    return render(request, 'core/inicio.html', {'usuario': prediction})

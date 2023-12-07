@@ -12,6 +12,7 @@ class facialRecognition:
             self.dir_list = os.listdir(self.dataPath) #Carpetas dentro del path (usuarios)
         except:
             os.makedirs(self.dataPath)
+            self.dir_list = os.listdir(self.dataPath)
 
     #Funcion para eliminar los archivos pares de los usuarios
     def removeFiles(self, user):
