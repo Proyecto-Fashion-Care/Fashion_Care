@@ -245,3 +245,9 @@ class facialRecognition:
 
     def getPrediction(self):
         return self.prediction
+
+facialReco = facialRecognition("utils/facial_reco/DatasetFaces")
+#facialReco.recognize()
+facialReco.train()
+#facialReco.predict()
+#print(facialReco.getPrediction())
