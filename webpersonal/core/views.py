@@ -120,10 +120,11 @@ def obtener_clima(request):
 
 def registro_facial(request):
     facialReco = facialRecognition("utils/facial_reco/DatasetFaces")
-    facialReco.recognize()
-    facialReco.train()
-    return render(request, 'core/confirmacion_registro.html')
-
+    if facialReco.recognize():
+        facialReco.train()
+        return render(request, 'core/face_registro.html')
+    else:
+        return render(request, 'core/error_registro.html')
 
 def inicio_sesion_facial(request):
     facialReco = facialRecognition("utils/facial_reco/DatasetFaces")

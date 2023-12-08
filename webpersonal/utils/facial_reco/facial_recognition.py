@@ -102,13 +102,13 @@ class facialRecognition:
         print("Hay un total de ", len(self.dir_list), " usuarios registrados")
 
         #Verificamos que no haya mas de 3 usuarios registrados para reducir procesamiento
-        if len(self.dir_list) > 3:
+        if len(self.dir_list) >= 3:
             print('Ha alcanzado el limite de usuarios registrados')
             eliminate = self.dir_list[3:]
             for user in eliminate:
                 print('Eliminar usuario: ', user)
                 #os.remove(f'{self.dataPath}/{user}')
-            return None
+            return False
 
         labels = [] #Etiquetas asignadas a las imagenes
         facesData = [] #Rostros detectados
@@ -151,6 +151,8 @@ class facialRecognition:
         #face_reco.write("facial_reco/eigenFaceModel.xml")
         #face_reco.write("facial_reco/fisherFaceModel.xml")
         print("Modelo almacenado")
+
+        return True
 
 
     
@@ -250,10 +252,9 @@ class facialRecognition:
         return self.prediction
 
 
-'''
+
 facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
-#facialReco.recognize()
+facialReco.recognize()
 #facialReco.train()
 facialReco.predict()
 print(facialReco.getPrediction())
-'''
