@@ -13,6 +13,8 @@ class facialRecognition:
         except:
             os.makedirs(self.dataPath)
             self.dir_list = os.listdir(self.dataPath) 
+        print(self.dir_list)
+
 
     #Funcion para eliminar los archivos pares de los usuarios
     def removeFiles(self, user):
@@ -29,6 +31,17 @@ class facialRecognition:
 
     #Metodo para generar imagenes de los rostros de los usuarios
     def recognize(self, num_fotos=200):
+        print("Hay un total de ", len(self.dir_list), " usuarios registrados")
+
+        #Verificamos que no haya mas de 3 usuarios registrados para reducir procesamiento
+        if len(self.dir_list) >= 3:
+            print('Ha alcanzado el limite de usuarios registrados')
+            eliminate = self.dir_list[3:]
+            for user in eliminate:
+                print('Eliminando usuario: ', user)
+                os.remove(f'{self.dataPath}/{user}')
+            return False
+
         mp_face_detection = mp.solutions.face_detection #Para detectar rostros
         user = input('usuario: ')
         output_folder = f'{self.dataPath}/{user}'
@@ -92,22 +105,16 @@ class facialRecognition:
 
         cap.release()
         cv2.destroyAllWindows()
+
+        self.user = user
+
+        return True
         
 
 
     #Metodo para entrenar las imagenes de los usuarios, utilizando un modelo (LBPHFaceRecognizer)
     def train(self):
         print("Lista archivos:", self.dir_list)
-        print("Hay un total de ", len(self.dir_list), " usuarios registrados")
-
-        #Verificamos que no haya mas de 3 usuarios registrados para reducir procesamiento
-        if len(self.dir_list) > 3:
-            print('Ha alcanzado el limite de usuarios registrados')
-            eliminate = self.dir_list[3:]
-            for user in eliminate:
-                print('Eliminar usuario: ', user)
-                #os.remove(f'{self.dataPath}/{user}')
-            return None
 
         labels = [] #Etiquetas asignadas a las imagenes
         facesData = [] #Rostros detectados
@@ -219,6 +226,7 @@ class facialRecognition:
                             try:
                                 color = (0, 255, 0) 
                                 usuario = LABELS[result[0]]
+                                print(usuario)
                                 #ser.write(b'1')
                             except:
                                 continue                              
@@ -243,11 +251,15 @@ class facialRecognition:
         self.prediction = mode(moda) #Obtenemos la moda de los resultados del reconocimiento facial
 
 
+
     def getPrediction(self):
         return self.prediction
 
-facialReco = facialRecognition("utils/facial_reco/DatasetFaces")
-#facialReco.recognize()
-facialReco.train()
-#facialReco.predict()
-#print(facialReco.getPrediction())
+
+'''
+facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
+facialReco.recognize()
+#facialReco.train()
+facialReco.predict()
+print(facialReco.getPrediction())
+'''

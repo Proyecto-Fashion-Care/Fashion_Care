@@ -71,6 +71,19 @@ body{
     cursor: pointer;
 }
 
+.container button:hover{
+    color: #8e8e8e;
+}
+
+.container button a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.container button a:hover{
+    color: #8e8e8e;
+}
+
 .container button.hidden{
     background-color: transparent;
     border-color: #fff;
