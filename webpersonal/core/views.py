@@ -150,7 +150,7 @@ def registro(request):
 def iniciar_sesion(request):
     if request.method == 'POST':
         email = request.POST.get('email')
-        contrasena = request.POST.get('contrasena')
+        contrasena = request.POST.get('password')
         user = authenticate(request, email=email, password=contrasena)
 
         if user is not None:
@@ -158,9 +158,12 @@ def iniciar_sesion(request):
             print("Usuario autenticado. Redirigiendo a confirmacion.")
 
             # Aquí es donde quieres redirigir al usuario después del inicio de sesión
-            return redirect('core/confirmacion.html')
+            #usuario = user.nombre
+            if request.user.is_authenticated:
+                return redirect('core/inicio.html', usuario=user.nombre)
+
         else:
-            # El usuario no pudo iniciar sesión, puedes manejar esto como desees
+            # El usuario no pudo iniciar sesión
             pass
 
     return render(request, 'core/login.html')
