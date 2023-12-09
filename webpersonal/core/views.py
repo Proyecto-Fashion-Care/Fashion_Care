@@ -8,7 +8,7 @@ import requests
 from django.http import HttpResponse
 from utils.facial_reco.facial_recognition import facialRecognition
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from .forms import UsuarioForm
 
 # Create your views here.
 def home(request):
@@ -136,3 +136,13 @@ def inicio_sesion_facial(request):
         return render(request, 'core/error_inicio_facial.html')
     else:
         return render(request, 'core/confirmacion.html', {'usuario': prediction})
+    
+def registro(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UsuarioForm()
+    return render(request, 'core/login.html', {'form': form})
