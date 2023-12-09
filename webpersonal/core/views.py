@@ -155,8 +155,10 @@ def iniciar_sesion(request):
 
         if user is not None:
             login(request, user)
+            print("Usuario autenticado. Redirigiendo a confirmacion.")
+
             # Aquí es donde quieres redirigir al usuario después del inicio de sesión
-            return redirect('confirmacion')
+            return redirect('core/confirmacion.html')
         else:
             # El usuario no pudo iniciar sesión, puedes manejar esto como desees
             pass
