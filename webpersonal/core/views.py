@@ -131,4 +131,7 @@ def inicio_sesion_facial(request):
     facialReco.train()
     facialReco.predict()
     prediction = facialReco.getPrediction()
-    return render(request, 'core/confirmacion.html', {'usuario': prediction})
+    if prediction == "Desconocido":
+        return render(request, 'core/error_inicio_facial.html')
+    else:
+        return render(request, 'core/confirmacion.html', {'usuario': prediction})

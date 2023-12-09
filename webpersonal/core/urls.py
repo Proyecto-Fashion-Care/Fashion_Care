@@ -9,6 +9,7 @@ urlpatterns = [
     path("confirmacion/", views.inicio_sesion_facial, name="confirmacion"),
     path("face_registro/", views.registro_facial, name="face_registro"),
     path("face_registro/error_registro/", views.registro_facial, name="error_registro"),
+    path("face_registro/error_inicio_facial/", views.inicio_sesion_facial, name="error_inicio_facial"),
     path("confirmacion/api/", views.api, name="api"),
     path('confirmacion/api/noticias/', views.noticias, name='noticias'),
     path('confirmacion/api/pregunta-ciudad/', pregunta_ciudad, name='pregunta_ciudad'),
