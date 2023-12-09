@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import serial
 import time
 from datetime import datetime, timedelta
@@ -7,7 +7,8 @@ from .forms import NewsForm
 import requests
 from django.http import HttpResponse
 from utils.facial_reco.facial_recognition import facialRecognition
-
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def home(request):
