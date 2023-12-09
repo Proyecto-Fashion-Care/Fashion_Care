@@ -7,7 +7,7 @@ from .forms import NewsForm
 import requests
 from django.http import HttpResponse
 from utils.facial_reco.facial_recognition import facialRecognition
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from .forms import UsuarioForm
 
 # Create your views here.
@@ -146,3 +146,19 @@ def registro(request):
     else:
         form = UsuarioForm()
     return render(request, 'core/login.html', {'form': form})
+
+def iniciar_sesion(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        contrasena = request.POST.get('contrasena')
+        user = authenticate(request, email=email, password=contrasena)
+
+        if user is not None:
+            login(request, user)
+            # Aquí es donde quieres redirigir al usuario después del inicio de sesión
+            return redirect('confirmacion')
+        else:
+            # El usuario no pudo iniciar sesión, puedes manejar esto como desees
+            pass
+
+    return render(request, 'core/login.html')
