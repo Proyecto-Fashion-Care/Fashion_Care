@@ -148,11 +148,12 @@ def registro(request):
     return render(request, 'core/login.html', {'form': form})
 
 def iniciar_sesion(request):
-    if request.method == 'POST':
+    if request.method == 'POST':  
         email = request.POST.get('email')
         contrasena = request.POST.get('password')
         user = authenticate(request, email=email, password=contrasena)
-
+        print(email, contrasena, user)
+            
         if user is not None:
             login(request, user)
             print("Usuario autenticado. Redirigiendo a confirmacion.")
@@ -164,4 +165,4 @@ def iniciar_sesion(request):
             # El usuario no pudo iniciar sesión
             pass
 
-    return render(request, 'core/api.html')
+    return render(request, 'core/error_inicio_facial.html')
