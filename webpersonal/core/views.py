@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import serial
 import time
 from datetime import datetime, timedelta
@@ -7,7 +7,8 @@ from .forms import NewsForm
 import requests
 from django.http import HttpResponse
 from utils.facial_reco.facial_recognition import facialRecognition
-
+from django.contrib.auth import login, authenticate
+from .forms import UsuarioForm
 
 # Create your views here.
 def home(request):
@@ -135,3 +136,34 @@ def inicio_sesion_facial(request):
         return render(request, 'core/error_inicio_facial.html')
     else:
         return render(request, 'core/confirmacion.html', {'usuario': prediction})
+    
+def registro(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UsuarioForm()
+    return render(request, 'core/login.html', {'form': form})
+
+def iniciar_sesion(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        contrasena = request.POST.get('password')
+        user = authenticate(request, email=email, password=contrasena)
+
+        if user is not None:
+            login(request, user)
+            print("Usuario autenticado. Redirigiendo a confirmacion.")
+
+            # Aquí es donde quieres redirigir al usuario después del inicio de sesión
+            #usuario = user.nombre
+            if request.user.is_authenticated:
+                return redirect('core/inicio.html', usuario=user.nombre)
+
+        else:
+            # El usuario no pudo iniciar sesión
+            pass
+
+    return render(request, 'core/login.html')
