@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información del Clima</title>
+    <link rel="stylesheet" href="{% static 'css/clima.css' %}">
 
 </head>
 <body>
-    <h1>Información del Clima</h1>
+    <h1>Información del Clima </h1>
     
     <p>Temperatura: {{ temperatura }}</p>
     <p>Condición: {{ condicion }}</p>
