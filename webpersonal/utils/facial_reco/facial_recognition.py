@@ -36,10 +36,13 @@ class facialRecognition:
         #Verificamos que no haya mas de 3 usuarios registrados para reducir procesamiento
         if len(self.dir_list) >= 3:
             print('Ha alcanzado el limite de usuarios registrados')
-            eliminate = self.dir_list[3:]
+            eliminate = self.dir_list[2:]
             for user in eliminate:
+                self.removedUser = user
                 print('Eliminando usuario: ', user)
-                os.remove(f'{self.dataPath}/{user}')
+                for imagen in os.listdir(f'{self.dataPath}/{user}'):
+                    os.remove(f'{self.dataPath}/{user}/{imagen}')
+                os.rmdir(f'{self.dataPath}/{user}')
             return False
 
         mp_face_detection = mp.solutions.face_detection #Para detectar rostros
@@ -153,7 +156,7 @@ class facialRecognition:
         face_reco.train(facesData, np.array(labels))
 
         # Almacenar modelo
-        face_reco.write("utils/facial_reco/LBPHFaceModel.xml")
+        face_reco.write("webpersonal/utils/facial_reco/LBPHFaceModel.xml")
         #face_reco.write("facial_reco/eigenFaceModel.xml")
         #face_reco.write("facial_reco/fisherFaceModel.xml")
         print("Modelo almacenado")
@@ -166,7 +169,7 @@ class facialRecognition:
 
         # Leemos el modelo
         face_reco = cv2.face.LBPHFaceRecognizer_create()
-        face_reco.read("utils/facial_reco/LBPHFaceModel.xml")
+        face_reco.read("webpersonal/utils/facial_reco/LBPHFaceModel.xml")
 
 
         #face_reco = cv2.face.EigenFaceRecognizer_create()
@@ -254,6 +257,10 @@ class facialRecognition:
 
     def getPrediction(self):
         return self.prediction
+    
+    
+    def getRemovedUser(self):
+        return self.removedUser
 
 
 '''
