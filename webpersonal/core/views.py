@@ -159,11 +159,9 @@ def iniciar_sesion(request):
 
             # Aquí es donde quieres redirigir al usuario después del inicio de sesión
             #usuario = user.nombre
-            if request.user.is_authenticated:
-                return redirect('core/inicio.html', usuario=user.nombre)
-
+            return render(request, 'core/confirmacion.html', {'usuario': user.nombre})
         else:
             # El usuario no pudo iniciar sesión
             pass
 
-    return render(request, 'core/login.html')
+    return render(request, 'core/api.html')
