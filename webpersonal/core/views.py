@@ -120,11 +120,13 @@ def obtener_clima(request):
 
 
 def registro_facial(request):
-    facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
-    if facialReco.recognize():
-        return render(request, 'core/porcentaje.html')
-    else:
-        return render(request, 'core/error_registro.html', {'removedUser': facialReco.getRemovedUser()})
+    if request.method == 'POST':
+        usuario = request.POST.get('nombre')
+        facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
+        if facialReco.recognize(user=usuario):
+            return render(request, 'core/porcentaje.html', {'usuario': usuario})
+        else:
+            return render(request, 'core/error_registro.html', {'removedUser': facialReco.getRemovedUser()})
 
 
 def inicio_sesion_facial(request):
@@ -137,6 +139,7 @@ def inicio_sesion_facial(request):
     else:
         return render(request, 'core/confirmacion.html', {'usuario': prediction})
     
+
 def registro(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
@@ -146,6 +149,7 @@ def registro(request):
     else:
         form = UsuarioForm()
     return render(request, 'core/login.html', {'form': form})
+
 
 def iniciar_sesion(request):
     if request.method == 'POST':  

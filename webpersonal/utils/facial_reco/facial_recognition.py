@@ -30,7 +30,7 @@ class facialRecognition:
 
 
     #Metodo para generar imagenes de los rostros de los usuarios
-    def recognize(self, num_fotos=200):
+    def recognize(self, num_fotos=200, user='user'):
         print("Hay un total de ", len(self.dir_list), " usuarios registrados")
 
         #Verificamos que no haya mas de 3 usuarios registrados para reducir procesamiento
@@ -46,7 +46,6 @@ class facialRecognition:
             return False
 
         mp_face_detection = mp.solutions.face_detection #Para detectar rostros
-        user = input('usuario: ')
         output_folder = f'{self.dataPath}/{user}'
 
         # Verificar si la carpeta existe, si no, crearla
@@ -258,7 +257,7 @@ class facialRecognition:
     def getPrediction(self):
         return self.prediction
     
-    
+
     def getRemovedUser(self):
         return self.removedUser
 
