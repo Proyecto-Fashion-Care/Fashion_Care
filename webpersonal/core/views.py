@@ -121,7 +121,7 @@ def obtener_clima(request):
 def registro_facial(request):
     facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
     if facialReco.recognize():
-        return render(request, 'core/face_registro.html', {'usuario': facialReco.user})
+        return render(request, 'core/porcentaje.html')
     else:
         return render(request, 'core/error_registro.html')
 
