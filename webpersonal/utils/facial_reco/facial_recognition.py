@@ -36,10 +36,13 @@ class facialRecognition:
         #Verificamos que no haya mas de 3 usuarios registrados para reducir procesamiento
         if len(self.dir_list) >= 3:
             print('Ha alcanzado el limite de usuarios registrados')
-            eliminate = self.dir_list[3:]
+            eliminate = self.dir_list[2:]
             for user in eliminate:
+                self.removedUser = user
                 print('Eliminando usuario: ', user)
-                os.remove(f'{self.dataPath}/{user}')
+                for imagen in os.listdir(f'{self.dataPath}/{user}'):
+                    os.remove(f'{self.dataPath}/{user}/{imagen}')
+                os.rmdir(f'{self.dataPath}/{user}')
             return False
 
         mp_face_detection = mp.solutions.face_detection #Para detectar rostros
@@ -254,6 +257,10 @@ class facialRecognition:
 
     def getPrediction(self):
         return self.prediction
+    
+    
+    def getRemovedUser(self):
+        return self.removedUser
 
 
 '''

@@ -124,7 +124,7 @@ def registro_facial(request):
     if facialReco.recognize():
         return render(request, 'core/porcentaje.html')
     else:
-        return render(request, 'core/error_registro.html')
+        return render(request, 'core/error_registro.html', {'removedUser': facialReco.getRemovedUser()})
 
 
 def inicio_sesion_facial(request):
