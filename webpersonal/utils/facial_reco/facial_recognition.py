@@ -153,7 +153,7 @@ class facialRecognition:
         face_reco.train(facesData, np.array(labels))
 
         # Almacenar modelo
-        face_reco.write("utils/facial_reco/LBPHFaceModel.xml")
+        face_reco.write("webpersonal/utils/facial_reco/LBPHFaceModel.xml")
         #face_reco.write("facial_reco/eigenFaceModel.xml")
         #face_reco.write("facial_reco/fisherFaceModel.xml")
         print("Modelo almacenado")
@@ -166,7 +166,7 @@ class facialRecognition:
 
         # Leemos el modelo
         face_reco = cv2.face.LBPHFaceRecognizer_create()
-        face_reco.read("utils/facial_reco/LBPHFaceModel.xml")
+        face_reco.read("webpersonal/utils/facial_reco/LBPHFaceModel.xml")
 
 
         #face_reco = cv2.face.EigenFaceRecognizer_create()
