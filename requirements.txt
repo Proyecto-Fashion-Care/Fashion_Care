@@ -1,0 +1,14 @@
+django
+pillow
+pylint
+pylint-django
+pylint-celery
+django-ckeditor
+pyserial
+SpeechRecognition==3.10.0
+pyttsx3
+newsapi-python
+numpy
+opencv-python
+mediapipe
+
