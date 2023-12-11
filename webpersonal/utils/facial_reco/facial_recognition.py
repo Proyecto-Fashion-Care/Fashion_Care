@@ -168,7 +168,8 @@ class facialRecognition:
 
         # Leemos el modelo
         face_reco = cv2.face.LBPHFaceRecognizer_create()
-        face_reco.read("webpersonal/utils/facial_reco/LBPHFaceModel.xml")
+        os.chmod('utils/facial_reco/LBPHFaceModel.xml', 0o777)
+        face_reco.read("utils/facial_reco/LBPHFaceModel.xml")
 
 
         #face_reco = cv2.face.EigenFaceRecognizer_create()
@@ -228,7 +229,6 @@ class facialRecognition:
                             try:
                                 color = (0, 255, 0) 
                                 usuario = LABELS[result[0]]
-                                print(usuario)
                                 #ser.write(b'1')
                             except:
                                 continue                              
