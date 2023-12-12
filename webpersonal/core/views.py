@@ -9,6 +9,8 @@ from django.http import HttpResponse
 from utils.facial_reco.facial_recognition import facialRecognition
 from django.contrib.auth import login, authenticate
 from .forms import UsuarioForm
+from threading import Thread
+
 
 # Create your views here.
 def home(request):
@@ -123,10 +125,23 @@ def registro_facial(request):
     if request.method == 'POST':
         usuario = request.POST.get('nombre')
         facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
-        if facialReco.recognize(user=usuario):
-            return render(request, 'core/porcentaje.html', {'usuario': usuario})
-        else:
-            return render(request, 'core/error_registro.html', {'removedUser': facialReco.getRemovedUser()})
+        
+        # Definir una función que ejecutará recognize
+        def recognize_user():
+            inicio = time.time()
+            if facialReco.recognize(user=usuario):
+                fin = time.time()
+                print("Tiempo de reconocimiento: ", fin - inicio)
+                return render(request, 'core/porcentaje.html', {'usuario': usuario})
+            else:
+                return render(request, 'core/error_registro.html', {'removedUser': facialReco.getRemovedUser()})
+        
+        # Iniciar un hilo para ejecutar recognize_user()
+        thread = Thread(target=recognize_user)
+        thread.start()
+        
+        # Continuar con la ejecución normal o redirigir a otra página mientras se procesa recognize
+        return render(request, 'core/porcentaje.html')  # Por ejemplo, una página de carga o procesamiento
 
 
 def inicio_sesion_facial(request):
