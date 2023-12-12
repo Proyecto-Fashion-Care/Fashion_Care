@@ -57,7 +57,7 @@ def noticias(request):
     if request.method == 'POST':
         # Crea una instancia del formulario y rellena los campos con la información de la solicitud
         form = NewsForm(request.POST)
-
+        
         # Valida el formulario
         if form.is_valid():
             # Obtiene el tema de las noticias
