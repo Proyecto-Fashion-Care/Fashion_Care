@@ -8,6 +8,7 @@ class facialRecognition:
 
     def __init__(self, dataPath) -> None:
         self.dataPath = dataPath
+        self.acceso = True
         try:
             self.dir_list = os.listdir(self.dataPath) #Carpetas dentro del path (usuarios)
         except:
@@ -35,6 +36,7 @@ class facialRecognition:
 
         #Verificamos que no haya mas de 3 usuarios registrados para reducir procesamiento
         if len(self.dir_list) >= 3:
+            self.acceso = False
             print('Ha alcanzado el limite de usuarios registrados')
             eliminate = self.dir_list[2:]
             for user in eliminate:
