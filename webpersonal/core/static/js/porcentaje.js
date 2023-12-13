@@ -15,7 +15,7 @@ let tiempo = setInterval(() => {
         clearInterval(tiempo);
          // Redirigir a otra página después de que el intervalo termine
          setTimeout(() => {
-            window.location.href = "/api/";
+            window.location.href = "../confirmacion/api/";
         }, 1000); // Tiempo en milisegundos antes de redirigir (en este caso, 1000 ms o 1 segundo)
     }
 }, refresh);

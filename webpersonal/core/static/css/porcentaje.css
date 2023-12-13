@@ -3,11 +3,10 @@ body{
 }
 
 :root{
-    --color1: rgb(15, 123, 212);
+    --color1: rgb(205, 205, 205);
 }
 
 .container{
-    background-color: #fff;
     height: 350px;
     width: 250px;
     position: relative;
@@ -40,7 +39,7 @@ body{
     font-family: sans-serif;
     font-weight: bold;
     font-size: 3em;
-    color: #777
+    color: var(--color1);
 }
 
 .title{
@@ -58,7 +57,7 @@ body{
 .progress{
     fill: none;
     stroke-width: 15;
-    stroke: var(--color1);
+    stroke: rgb(rgb(42, 191, 62));
     stroke-dasharray: 630;
     stroke-dashoffset: 630;
     transform: rotate(-90deg);
@@ -68,6 +67,6 @@ body{
 
 .progress2{
     fill: none;
-    stroke: rgb(233, 233, 233);
+    stroke: var(--color1); 
     stroke-width: 15;
 }
