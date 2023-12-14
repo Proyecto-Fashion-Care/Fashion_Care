@@ -11,4 +11,5 @@ newsapi-python
 numpy
 opencv-python
 mediapipe
+gtts
 

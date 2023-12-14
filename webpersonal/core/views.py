@@ -7,6 +7,7 @@ from .forms import NewsForm
 import requests
 from django.http import HttpResponse, JsonResponse
 from utils.facial_reco.facial_recognition import facialRecognition
+from utils.speech.speech import speak
 from django.contrib.auth import login, authenticate
 from .forms import UsuarioForm
 from threading import Thread
@@ -140,6 +141,8 @@ def inicio_sesion_facial(request):
     if prediction == "Desconocido":
         return render(request, 'core/error_inicio_facial.html')
     else:
+        audio = "Bienvenido " + prediction
+        speak(audio)
         return render(request, 'core/confirmacion.html', {'usuario': prediction})
     
 
@@ -173,3 +176,9 @@ def iniciar_sesion(request):
             pass
 
     return render(request, 'core/error_inicio_facial.html')
+
+def audio(request):
+    audio = "Bienvenido"
+    speak(audio)
+    return render(request, 'core/audio.html')
+

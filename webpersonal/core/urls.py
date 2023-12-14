@@ -15,5 +15,7 @@ urlpatterns = [
     path('api/noticias/', views.noticias, name='noticias'),
     path('api/pregunta-ciudad/', pregunta_ciudad, name='pregunta_ciudad'),
     path('api/clima/', obtener_clima, name='obtener_clima'),
+    path('api/noticias/', views.noticias, name='noticias'),
+    path('audio/', views.audio, name='audio'),
 ]
 
