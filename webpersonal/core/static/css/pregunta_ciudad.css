@@ -8,7 +8,7 @@ body {
     display: grid;
     place-items: top;
     overflow: hidden;
-    background: rgb(239, 114, 114);
+    background: linear-gradient(to bottom, #232526, #414345);
 }
 
 h1 {
@@ -46,4 +46,24 @@ button {
 
 button:hover {
     background-color: #2C313A;
+}
+
+.exit {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 1000;
+}
+
+.exit a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.exit a:hover {
+    text-decoration: underline;
+    
 }

@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="{% static 'css/pregunta_ciudad.css' %}">
 </head>
 <body>
+
+    <div class="exit">
+        <a href="../" class="fa fa-arrow-left"></a>
+    </div>
+
     <h1>Consulta de Clima</h1>
 
     <form method="post" action="{% url 'obtener_clima' %}">
@@ -18,9 +23,6 @@
         <label for="ciudad">Ingresa tu ciudad:</label>
         <input type="text" id="ciudad" name="ciudad" required>
         <button type="submit">Consultar Clima</button>
-        <a href="../" id="botonInicio">
-            Pincha aquí para volver a la página principal
-        </a>
     </form>
 </body>
 </html>
