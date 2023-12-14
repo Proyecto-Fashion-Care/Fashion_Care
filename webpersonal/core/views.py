@@ -135,7 +135,7 @@ def registro_facial(request):
 
 def inicio_sesion_facial(request):
     facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
-    #facialReco.train()
+    facialReco.train()
     facialReco.predict()
     prediction = facialReco.getPrediction()
     if prediction == "Desconocido":

@@ -57,7 +57,7 @@ body{
 .progress{
     fill: none;
     stroke-width: 15;
-    stroke: rgb(rgb(42, 191, 62));
+    stroke: rgb(33, 157, 49);
     stroke-dasharray: 630;
     stroke-dashoffset: 630;
     transform: rotate(-90deg);
