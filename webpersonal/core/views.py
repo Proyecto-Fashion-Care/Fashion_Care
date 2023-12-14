@@ -142,7 +142,8 @@ def inicio_sesion_facial(request):
         return render(request, 'core/error_inicio_facial.html')
     else:
         audio = "Bienvenido " + prediction
-        speak(audio)
+        thread = Thread(target=speak, args=(audio,))
+        thread.start()
         return render(request, 'core/confirmacion.html', {'usuario': prediction})
     
 
@@ -179,6 +180,7 @@ def iniciar_sesion(request):
 
 def audio(request):
     audio = "Bienvenido"
-    speak(audio)
+    thread = Thread(target=speak, args=(audio,))
+    thread.start()
     return render(request, 'core/audio.html')
 
