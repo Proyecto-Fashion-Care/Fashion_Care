@@ -11,16 +11,20 @@ def speak(text):
 
 def listen():
     r = sr.Recognizer()
-    with sr.Microphone() as source:
+    mic = sr.Microphone()
+    with mic as source:
         print("Escuchando...")
-        audio = r.listen(source)
+        r.pause_threshold = 1
+        r.energy_threshold = 200
         try:
+            audio = r.listen(source, timeout=1)
             print("Procesando")
             text = r.recognize_google(audio, language="es-ES")
             print("Dijiste: {}".format(text))
+            return text
         except:
             print("No te he entendido")
-    return text
+    
 
 audio = listen()
 speak(audio)
