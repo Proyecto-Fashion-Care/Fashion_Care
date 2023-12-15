@@ -125,26 +125,31 @@ def obtener_clima(request):
 def registro_facial(request):
     if request.method == 'POST':
         usuario = request.POST.get('nombre')
-        facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
-        if facialReco.recognize(user=usuario):      
-            return render(request, 'core/porcentaje.html', {'usuario': usuario})
-        else:
-            return render(request, 'core/error_registro.html', {'removedUser': facialReco.getRemovedUser()})
-
+        try:
+            facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
+            if facialReco.recognize(user=usuario):      
+                return render(request, 'core/porcentaje.html', {'usuario': usuario})
+            else:
+                return render(request, 'core/error_registro.html', {'removedUser': facialReco.getRemovedUser()})
+        except:
+            return render(request, 'core/error_inicio_facial.html')
 
 
 def inicio_sesion_facial(request):
     facialReco = facialRecognition("webpersonal/utils/facial_reco/DatasetFaces")
-    #facialReco.train()
-    facialReco.predict()
-    prediction = facialReco.getPrediction()
-    if prediction == "Desconocido":
+    try:
+        facialReco.train()
+        facialReco.predict()
+        prediction = facialReco.getPrediction()
+        if prediction == "Desconocido":
+            return render(request, 'core/error_inicio_facial.html')
+        else:
+            audio = "Bienvenido " + prediction
+            thread = Thread(target=speak, args=(audio,))
+            thread.start()
+            return render(request, 'core/confirmacion.html', {'usuario': prediction})
+    except:
         return render(request, 'core/error_inicio_facial.html')
-    else:
-        audio = "Bienvenido " + prediction
-        thread = Thread(target=speak, args=(audio,))
-        thread.start()
-        return render(request, 'core/confirmacion.html', {'usuario': prediction})
     
 
 def registro(request):
