@@ -1,5 +1,7 @@
 # Fashion_Care
 
+El link al repositorio es el siguiente: https://github.com/Proyecto-Fashion-Care/Fashion_Care.git
+
 sprint1: crear entorno virtual
 
 crear base de django e inicializar servidor
